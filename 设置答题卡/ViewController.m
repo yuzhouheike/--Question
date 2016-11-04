@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "QuestionCountView.h"
 @interface ViewController ()
 
 @end
@@ -17,6 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor grayColor];
+    
+    UIView *questionCountViewview = [[QuestionCountView alloc] initWithFrame:CGRectMake(20, 40, CGRectGetWidth(self.view.bounds) - 40, 400)];
+    
+    
+    [self.view addSubview:questionCountViewview];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
