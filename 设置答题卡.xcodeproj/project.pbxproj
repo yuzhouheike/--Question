@@ -31,6 +31,7 @@
 		C690C2541DD022C70069DB84 /* sub.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C2521DD022C70069DB84 /* sub.png */; };
 		C690C2551DD022C70069DB84 /* sum.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C2531DD022C70069DB84 /* sum.png */; };
 		C690C2581DD068E50069DB84 /* NSObject+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C2571DD068E50069DB84 /* NSObject+Log.m */; };
+		C690C25B1DD06D090069DB84 /* AnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C25A1DD06D090069DB84 /* AnswerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		C690C2521DD022C70069DB84 /* sub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sub.png; sourceTree = "<group>"; };
 		C690C2531DD022C70069DB84 /* sum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sum.png; sourceTree = "<group>"; };
 		C690C2571DD068E50069DB84 /* NSObject+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Log.m"; path = "../NSObject+Log.m"; sourceTree = "<group>"; };
+		C690C2591DD06D090069DB84 /* AnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerView.h; sourceTree = "<group>"; };
+		C690C25A1DD06D090069DB84 /* AnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 				C65C63F51DCC7A950015E2C8 /* AppDelegate.m */,
 				C65C63F71DCC7A950015E2C8 /* ViewController.h */,
 				C65C63F81DCC7A950015E2C8 /* ViewController.m */,
+				C690C2591DD06D090069DB84 /* AnswerView.h */,
+				C690C25A1DD06D090069DB84 /* AnswerView.m */,
 				C65C64241DCC7DD60015E2C8 /* QuestionCountView.h */,
 				C65C64251DCC7DD60015E2C8 /* QuestionCountView.m */,
 				C65C63FA1DCC7A950015E2C8 /* Main.storyboard */,
@@ -381,6 +386,7 @@
 				C65C644F1DCC7FE30015E2C8 /* MASConstraintMaker.m in Sources */,
 				C65C63F91DCC7A950015E2C8 /* ViewController.m in Sources */,
 				C690C2581DD068E50069DB84 /* NSObject+Log.m in Sources */,
+				C690C25B1DD06D090069DB84 /* AnswerView.m in Sources */,
 				C65C63F61DCC7A950015E2C8 /* AppDelegate.m in Sources */,
 				C65C644E1DCC7FE30015E2C8 /* MASConstraint.m in Sources */,
 				C65C64501DCC7FE30015E2C8 /* MASLayoutConstraint.m in Sources */,
