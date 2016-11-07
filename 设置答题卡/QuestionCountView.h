@@ -13,4 +13,7 @@
 /** 题目数量 */
 @property (nonatomic, assign) NSInteger questionCounter;
 
+/** 题目数量字典 */
+@property (nonatomic, strong) NSMutableDictionary *questionDictionary;
+
 @end

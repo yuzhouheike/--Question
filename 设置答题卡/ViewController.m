@@ -24,6 +24,8 @@
     
     [self.view addSubview:questionCountViewview];
     
+    NSLog(@"%@", questionCountViewview);
+    
     
     
 }

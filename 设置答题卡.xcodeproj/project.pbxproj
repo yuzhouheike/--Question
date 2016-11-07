@@ -26,7 +26,10 @@
 		C65C64531DCC7FE30015E2C8 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C64441DCC7FE30015E2C8 /* NSArray+MASAdditions.m */; };
 		C65C64541DCC7FE30015E2C8 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C64471DCC7FE30015E2C8 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		C65C64551DCC7FE30015E2C8 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C64491DCC7FE30015E2C8 /* View+MASAdditions.m */; };
-		C65C64561DCC7FE30015E2C8 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = C65C644B1DCC7FE30015E2C8 /* README.md */; };
+		C690C24C1DD01ADC0069DB84 /* button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C24A1DD01ADC0069DB84 /* button_normal.png */; };
+		C690C24D1DD01ADC0069DB84 /* button_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C24B1DD01ADC0069DB84 /* button_selected.png */; };
+		C690C2541DD022C70069DB84 /* sub.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C2521DD022C70069DB84 /* sub.png */; };
+		C690C2551DD022C70069DB84 /* sum.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C2531DD022C70069DB84 /* sum.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +92,10 @@
 		C65C64481DCC7FE30015E2C8 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
 		C65C64491DCC7FE30015E2C8 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
 		C65C644A1DCC7FE30015E2C8 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		C65C644B1DCC7FE30015E2C8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C690C24A1DD01ADC0069DB84 /* button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_normal.png; sourceTree = "<group>"; };
+		C690C24B1DD01ADC0069DB84 /* button_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_selected.png; sourceTree = "<group>"; };
+		C690C2521DD022C70069DB84 /* sub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sub.png; sourceTree = "<group>"; };
+		C690C2531DD022C70069DB84 /* sum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sum.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,7 @@
 		C65C63F01DCC7A950015E2C8 /* 设置答题卡 */ = {
 			isa = PBXGroup;
 			children = (
+				C690C2451DD01A810069DB84 /* images */,
 				C65C64311DCC7FE30015E2C8 /* Masonry */,
 				C65C63F41DCC7A950015E2C8 /* AppDelegate.h */,
 				C65C63F51DCC7A950015E2C8 /* AppDelegate.m */,
@@ -187,7 +194,6 @@
 			children = (
 				C65C64321DCC7FE30015E2C8 /* LICENSE */,
 				C65C64331DCC7FE30015E2C8 /* Masonry */,
-				C65C644B1DCC7FE30015E2C8 /* README.md */,
 			);
 			path = Masonry;
 			sourceTree = "<group>";
@@ -220,6 +226,17 @@
 				C65C644A1DCC7FE30015E2C8 /* View+MASShorthandAdditions.h */,
 			);
 			path = Masonry;
+			sourceTree = "<group>";
+		};
+		C690C2451DD01A810069DB84 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C690C2521DD022C70069DB84 /* sub.png */,
+				C690C2531DD022C70069DB84 /* sum.png */,
+				C690C24A1DD01ADC0069DB84 /* button_normal.png */,
+				C690C24B1DD01ADC0069DB84 /* button_selected.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +306,7 @@
 				TargetAttributes = {
 					C65C63ED1DCC7A950015E2C8 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = VQWBM9YFP9;
 					};
 					C65C64061DCC7A950015E2C8 = {
 						CreatedOnToolsVersion = 7.3;
@@ -325,10 +343,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C690C24D1DD01ADC0069DB84 /* button_selected.png in Resources */,
 				C65C64011DCC7A950015E2C8 /* LaunchScreen.storyboard in Resources */,
 				C65C63FE1DCC7A950015E2C8 /* Assets.xcassets in Resources */,
+				C690C24C1DD01ADC0069DB84 /* button_normal.png in Resources */,
 				C65C644C1DCC7FE30015E2C8 /* LICENSE in Resources */,
 				C65C63FC1DCC7A950015E2C8 /* Main.storyboard in Resources */,
+				C690C2541DD022C70069DB84 /* sub.png in Resources */,
+				C690C2551DD022C70069DB84 /* sum.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +385,6 @@
 				C65C64511DCC7FE30015E2C8 /* MASViewAttribute.m in Sources */,
 				C65C64551DCC7FE30015E2C8 /* View+MASAdditions.m in Sources */,
 				C65C64261DCC7DD60015E2C8 /* QuestionCountView.m in Sources */,
-				C65C64561DCC7FE30015E2C8 /* README.md in Sources */,
 				C65C63F31DCC7A950015E2C8 /* main.m in Sources */,
 				C65C644D1DCC7FE30015E2C8 /* MASCompositeConstraint.m in Sources */,
 				C65C64541DCC7FE30015E2C8 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -509,10 +530,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhang shaohua (BFL5BF4Y5W)";
 				INFOPLIST_FILE = "设置答题卡/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lezhixing.www.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lezhixing.www.123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -520,10 +545,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhang shaohua (BFL5BF4Y5W)";
 				INFOPLIST_FILE = "设置答题卡/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lezhixing.www.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lezhixing.www.123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -592,6 +621,7 @@
 				C65C641D1DCC7A950015E2C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C65C641E1DCC7A950015E2C8 /* Build configuration list for PBXNativeTarget "设置答题卡Tests" */ = {
 			isa = XCConfigurationList;
@@ -600,6 +630,7 @@
 				C65C64201DCC7A950015E2C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C65C64211DCC7A950015E2C8 /* Build configuration list for PBXNativeTarget "设置答题卡UITests" */ = {
 			isa = XCConfigurationList;
@@ -608,6 +639,7 @@
 				C65C64231DCC7A950015E2C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
