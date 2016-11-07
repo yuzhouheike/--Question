@@ -19,7 +19,8 @@
     UIButton *_questionSumButton;
     UIView *_blackView;
     CGFloat _answerCount;
-    
+    UILabel *tempLabel;
+    UIView *answerView;
 }
 
 
@@ -70,7 +71,7 @@
         [self addSubview:_questionSumButton];
         [self addSubview:_numberOfQuestionLabel];
         [self addSubview:_blackView];
-        
+        [self addListView];
     }
     return self;
 }
@@ -116,8 +117,6 @@
         make.height.equalTo(@1);
     }];
     
-    
-    [self addListView];
 }
 
 - (void)questionSubButtonMethod:(UIButton *)button {
@@ -141,21 +140,28 @@
     
     _questionDictionary[@"questionCount"] = [NSNumber numberWithInteger:_questionCounter];
     NSLog(@"%@", _questionDictionary);
-    
+
+    [self addListView];
 }
 
 - (void) addListView {
 
-    UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(30, 50, 80, 30);
-    label.text = @"第1题 :";
-//    label.backgroundColor = [UIColor grayColor];
-    [self addSubview:label];
     
-    NSArray *answesArray = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H"];
+    for(UIView *view in [answerView subviews])
+    {
+        [view removeFromSuperview];
+    }
+    
+    answerView = [[UIView alloc] initWithFrame:CGRectMake(30, 50, CGRectGetWidth(self.bounds), 400)];
+    tempLabel = [[UILabel alloc] init];
+    tempLabel.frame = CGRectMake(kMargin, kMargin, 80, 30);
+    tempLabel.text = [NSString stringWithFormat:@"第%ld题 :", (long)_questionCounter];
+    [answerView addSubview:tempLabel];
+    
+    NSArray *answesArray = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K"];
     
     CGFloat x ;
-    CGFloat y = label.frame.origin.y;
+    CGFloat y = tempLabel.frame.origin.y;
     CGFloat width = 40;
     CGFloat height = 30;
     
@@ -173,7 +179,7 @@
 //        button.backgroundColor = [UIColor grayColor];
         button.tag = 1000 + index;
         
-        [self addSubview:button];
+        [answerView addSubview:button];
     }
     
     UIButton *answerSubButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -186,22 +192,24 @@
     [answerSumButton addTarget:self action:@selector(answerSubOrSumButtonMethod:) forControlEvents:UIControlEventTouchUpInside];
     answerSumButton.accessibilityLabel = @"answerSum";
     
-    [self addSubview:answerSumButton];
-    [self addSubview:answerSubButton];
+    [answerView addSubview:answerSumButton];
+    [answerView addSubview:answerSubButton];
     
     [answerSumButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.right.equalTo(self).offset(-kMargin);
-        make.top.equalTo(_blackView.mas_bottom).offset(kMargin);
+        make.right.equalTo(answerView.mas_right).offset(-kMargin * 4);
+        make.top.equalTo(tempLabel.mas_top);
         make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
-    
+
     [answerSubButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(answerSumButton.mas_left).offset(-kMargin);
         make.top.equalTo(answerSumButton.mas_top);
         make.size.mas_equalTo(answerSumButton);
     }];
+    
+    [self addSubview:answerView];
 }
 
 - (void) answerButtonSelectedMethod:(UIButton *)button {
@@ -211,7 +219,25 @@
 
 - (void)answerSubOrSumButtonMethod:(UIButton *)button {
     
-    NSLog(@"%@", button);
+    NSLog(@"%@", button.accessibilityLabel);
+
+    if ([button.accessibilityLabel isEqualToString:@"answerSum"]) {
+        
+        NSLog(@"");
+        if (_answerCount < 11) {
+            _answerCount = _answerCount + 1;
+        }
+        
+    }
+    else if([button.accessibilityLabel isEqualToString:@"answerSub"]) {
+        NSLog(@"");
+        
+        if (_answerCount > 4) {
+            _answerCount = _answerCount - 1;
+        }
+    }
+    
+    [self addListView];
 }
 
 @end
