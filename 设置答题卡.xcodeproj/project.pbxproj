@@ -30,6 +30,7 @@
 		C690C24D1DD01ADC0069DB84 /* button_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C24B1DD01ADC0069DB84 /* button_selected.png */; };
 		C690C2541DD022C70069DB84 /* sub.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C2521DD022C70069DB84 /* sub.png */; };
 		C690C2551DD022C70069DB84 /* sum.png in Resources */ = {isa = PBXBuildFile; fileRef = C690C2531DD022C70069DB84 /* sum.png */; };
+		C690C2581DD068E50069DB84 /* NSObject+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C2571DD068E50069DB84 /* NSObject+Log.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		C690C24B1DD01ADC0069DB84 /* button_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_selected.png; sourceTree = "<group>"; };
 		C690C2521DD022C70069DB84 /* sub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sub.png; sourceTree = "<group>"; };
 		C690C2531DD022C70069DB84 /* sum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sum.png; sourceTree = "<group>"; };
+		C690C2571DD068E50069DB84 /* NSObject+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Log.m"; path = "../NSObject+Log.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		C65C63F11DCC7A950015E2C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C690C2571DD068E50069DB84 /* NSObject+Log.m */,
 				C65C63F21DCC7A950015E2C8 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -377,6 +380,7 @@
 			files = (
 				C65C644F1DCC7FE30015E2C8 /* MASConstraintMaker.m in Sources */,
 				C65C63F91DCC7A950015E2C8 /* ViewController.m in Sources */,
+				C690C2581DD068E50069DB84 /* NSObject+Log.m in Sources */,
 				C65C63F61DCC7A950015E2C8 /* AppDelegate.m in Sources */,
 				C65C644E1DCC7FE30015E2C8 /* MASConstraint.m in Sources */,
 				C65C64501DCC7FE30015E2C8 /* MASLayoutConstraint.m in Sources */,
