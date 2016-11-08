@@ -20,7 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = [UIColor purpleColor];
+//        self.backgroundColor = [UIColor purpleColor];
     }
     return self;
 }
@@ -57,7 +57,8 @@
         [button setImage:[UIImage imageNamed:@"button_normal"] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"button_selected"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(answerButtonSelectedMethod:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = 1000 * index;
+        button.tag = 1000 * index + number;
+
         
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[@"selected"] = [NSString stringWithFormat:@"%ld", (long)button.selected];
@@ -109,7 +110,11 @@
         NSLog(@"第%ld行 第%ld列", button.tag % 1000, button.tag / 1000);
         
         [dictionary setValue:[NSNumber numberWithInteger:(button.tag / 1000)] forKey:[NSString stringWithFormat:@"第%ld题", (button.tag % 1000)]];
-        
+        [self.answerArray addObject:[NSString stringWithFormat:@"%ld", button.tag / 1000]];
+        /**
+         sortUsingDescriptors
+         */
+
     }
     else {
         
@@ -123,6 +128,8 @@
 }
 
 - (void)answerSubOrSumButtonMethod:(UIButton *)button {
+    
+    self.answerArray = [NSMutableArray array];
     
     NSLog(@"%@", button.accessibilityLabel);
     
@@ -138,15 +145,22 @@
         if (col < 11) {
             [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
             col = col + 1;
+            [self answerViewWithNumber:self.orderOfQuestion answerCount:col];
+
         }
         
     }
     else if([button.accessibilityLabel isEqualToString:@"answerSub"]) {
         
         NSLog(@"");
+      
         if (col > 4) {
             [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
             col = col - 1;
+            [self answerViewWithNumber:self.orderOfQuestion answerCount:col];
+
+
+            [button removeFromSuperview];
         }
     }
     
@@ -165,5 +179,14 @@
     return [NSString stringWithFormat:@"题目个数：%ld 题目序号：第%ld题 \n 答案数组%@", self.numberOfQuestion, self.orderOfQuestion, self.answerArray];
 }
 
+#pragma mark - answerArray 
+
+- (NSMutableArray *)answerArray {
+    
+    if (!_answerArray) {
+        _answerArray = [NSMutableArray array];
+    }
+    return _answerArray;
+}
 
 @end

@@ -70,7 +70,7 @@
         [self addSubview:_numberOfQuestionLabel];
         [self addSubview:_blackView];
         
-        AnswerView *answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, (self.answerViewArray.count + 3) * 60, CGRectGetWidth(self.bounds), 50)];
+        AnswerView *answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, (self.answerViewArray.count + 1) * 60, CGRectGetWidth(self.bounds), 50)];
         answerView.orderOfQuestion = 1;
         [self addSubview:answerView];
         [self.answerViewArray addObject:answerView];
@@ -133,7 +133,7 @@
     if ([result isEqualToString:@"-"] && _questionCounter > 1) {
 
         CGRect frame = self.frame;
-        CGSize size = CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) -   40);
+        CGSize size = CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) -   60);
         frame.size = size;
         self.frame = frame;
         _questionCounter = _questionCounter - 1;
@@ -149,13 +149,13 @@
         
         _questionCounter = _questionCounter + 1;
         CGRect frame = self.frame;
-        CGSize size = CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) +40);
+        CGSize size = CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + 60);
         frame.size = size;
         self.frame = frame;
         /**
          增加一个anserView到最后
          */
-        AnswerView *answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, (self.answerViewArray.count + 3) * 60, CGRectGetWidth(self.bounds), 50)];
+        AnswerView *answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, (self.answerViewArray.count + 1) * 60, CGRectGetWidth(self.bounds), 50)];
         answerView.orderOfQuestion = self.answerViewArray.count + 1;
         [self addSubview:answerView];
         [self.answerViewArray addObject:answerView];
