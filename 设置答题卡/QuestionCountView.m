@@ -131,8 +131,6 @@
 - (UIView *) answerViewWithNumber:(NSInteger)number answerCount:(NSInteger)answerCount{
 
     
-//        NSDictionary *dict = @{@"answerCount":[NSNumber numberWithInteger:answerCount]};
-//        _resultDictArray[number] = dict;
         UIView  *answerView = [[UIView alloc] initWithFrame:CGRectMake(30, 50 + (40 + kMargin) * number, CGRectGetWidth(self.bounds), 40)];
         answerView.tag = 1000 + number;
     
