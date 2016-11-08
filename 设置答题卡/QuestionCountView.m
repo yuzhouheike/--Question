@@ -74,9 +74,7 @@
         [self addSubview:_numberOfQuestionLabel];
         [self addSubview:_blackView];
         
-        UIView *view = [self answerViewWithNumber:1 answerCount:4];
         
-        [self addSubview:view];
     }
     return self;
 }
@@ -210,78 +208,21 @@
     
     if ([result isEqualToString:@"-"] && _questionCounter > 1) {
         
-        [(UIView *)[self viewWithTag:_questionCounter + 1000] removeFromSuperview];
         _questionCounter = _questionCounter - 1;
     }
     else if ([result isEqualToString:@"+"]) {
         
         _questionCounter = _questionCounter + 1;
-        [self addSubview:[self answerViewWithNumber:_questionCounter answerCount:4]];
     }
     
     _numberOfQuestionLabel.text = [NSString stringWithFormat:@"%ld", (long)_questionCounter];
-    NSLog(@"%ld", (long)_questionCounter);
-    NSLog(@"%@", _resultDictArray);
+    
 }
 
+- (void)setQuestionCounter:(NSInteger)questionCounter {
+    
+    _numberOfQuestionLabel.text = [NSString stringWithFormat:@"%ld", (long)_questionCounter];
 
-#pragma mark - 题目的正确选项
-
-- (void) answerButtonSelectedMethod:(UIButton *)button {
-    
-    button.selected = !button.selected;
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    if (button.selected) {
-        NSLog(@"第%ld行 第%ld列", button.tag % 1000, button.tag / 1000);
-        
-        [dictionary setValue:[NSNumber numberWithInteger:(button.tag / 1000)] forKey:[NSString stringWithFormat:@"第%ld题", (button.tag % 1000)]];
-        
-        [_resultDictArray addObject:dictionary];
-    }
-    else {
-        
-        NSLog(@"第%ld行 第%ld列", button.tag % 1000, button.tag / 1000);
-        
-        [dictionary setValue:[NSNumber numberWithInteger:(button.tag % 1000)] forKey:[NSString stringWithFormat:@"%ld", (button.tag / 1000)]];
-        
-        [_resultDictArray removeObject:dictionary];
-
-    }
-    
-    NSLog(@"%@", _resultDictArray);
-}
-
-- (void)answerSubOrSumButtonMethod:(UIButton *)button {
-    
-    NSLog(@"%@", button.accessibilityLabel);
-
-    NSLog(@"%ld", button.tag / 100);
-    
-    NSInteger row = button.tag / 100;
-    
-    NSInteger col = button.tag % 100;
-    
-    if ([button.accessibilityLabel isEqualToString:@"answerSum"]) {
-        
-        NSLog(@"");
-        if (col < 11) {
-            [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
-            col = col + 1;
-            [self addSubview:[self answerViewWithNumber:row answerCount:col]];
-        }
-        
-    }
-    else if([button.accessibilityLabel isEqualToString:@"answerSub"]) {
-       
-        NSLog(@"");
-        if (col > 4) {
-            [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
-            col = col - 1;
-            [self addSubview:[self answerViewWithNumber:row answerCount:col]];
-        }
-    }
-    
-    NSLog(@"%@", _resultDictArray);
 }
 
 @end
