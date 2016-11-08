@@ -170,7 +170,7 @@
 
 - (NSString *)description {
     
-    return [NSString stringWithFormat:@"题目个数：%ld 题目序号：第%ld题 \n 答案数组%@", self.numberOfQuestion, self.orderOfQuestion, self.answerArray];
+    return [NSString stringWithFormat:@"题目序号：第%ld题 \n 题目个数：%ld  \n 答案数组%@",  self.orderOfQuestion, self.numberOfQuestion, self.answerArray];
 }
 
 #pragma mark - answerArray 
