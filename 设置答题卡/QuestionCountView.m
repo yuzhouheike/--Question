@@ -126,8 +126,6 @@
 
 - (void)questionSubButtonMethod:(UIButton *)button {
     
-    NSLog(@"%@", button.accessibilityLabel);
-    
     NSString *result = button.accessibilityLabel;
     
     if ([result isEqualToString:@"-"] && _questionCounter > 1) {
@@ -143,7 +141,6 @@
         AnswerView *answerView = self.answerViewArray[self.answerViewArray.count - 1];
         [answerView removeFromSuperview];
         [self.answerViewArray removeObjectAtIndex:(self.answerViewArray.count -1)];
-//        [self]
     }
     else if ([result isEqualToString:@"+"]) {
         
@@ -163,11 +160,7 @@
     }
     
     _numberOfQuestionLabel.text = [NSString stringWithFormat:@"%ld", (long)_questionCounter];
-    
-    NSLog(@"%@", self.answerViewArray);
-    
-    
-   
+     
 }
 
 - (void)setQuestionCounter:(NSInteger)questionCounter {

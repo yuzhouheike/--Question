@@ -107,10 +107,13 @@
     button.selected = !button.selected;
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     if (button.selected) {
-        NSLog(@"第%ld行 第%ld列", button.tag % 1000, button.tag / 1000);
         
         [dictionary setValue:[NSNumber numberWithInteger:(button.tag / 1000)] forKey:[NSString stringWithFormat:@"第%ld题", (button.tag % 1000)]];
         [self.answerArray addObject:[NSString stringWithFormat:@"%ld", button.tag / 1000]];
+        [self.answerArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            
+            return obj1 > obj2;
+        }];
         /**
          sortUsingDescriptors
          */
@@ -118,11 +121,9 @@
     }
     else {
         
-        NSLog(@"第%ld行 第%ld列", button.tag % 1000, button.tag / 1000);
         
         [dictionary setValue:[NSNumber numberWithInteger:(button.tag % 1000)] forKey:[NSString stringWithFormat:@"%ld", (button.tag / 1000)]];
-        
-        
+  
     }
     
 }
@@ -130,18 +131,13 @@
 - (void)answerSubOrSumButtonMethod:(UIButton *)button {
     
     self.answerArray = [NSMutableArray array];
-    
-    NSLog(@"%@", button.accessibilityLabel);
-    
-    NSLog(@"%ld", button.tag / 100);
-    
+  
     NSInteger row = button.tag / 100;
     
     NSInteger col = button.tag % 100;
     
     if ([button.accessibilityLabel isEqualToString:@"answerSum"]) {
-        
-        NSLog(@"");
+      
         if (col < 11) {
             [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
             col = col + 1;
@@ -151,9 +147,7 @@
         
     }
     else if([button.accessibilityLabel isEqualToString:@"answerSub"]) {
-        
-        NSLog(@"");
-      
+  
         if (col > 4) {
             [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
             col = col - 1;
