@@ -151,7 +151,6 @@
 		C65C63F01DCC7A950015E2C8 /* 设置答题卡 */ = {
 			isa = PBXGroup;
 			children = (
-				C690C2451DD01A810069DB84 /* images */,
 				C65C64311DCC7FE30015E2C8 /* Masonry */,
 				C65C63F41DCC7A950015E2C8 /* AppDelegate.h */,
 				C65C63F51DCC7A950015E2C8 /* AppDelegate.m */,
@@ -163,6 +162,7 @@
 				C65C64251DCC7DD60015E2C8 /* QuestionCountView.m */,
 				C65C63FA1DCC7A950015E2C8 /* Main.storyboard */,
 				C65C63FD1DCC7A950015E2C8 /* Assets.xcassets */,
+				C690C2451DD01A810069DB84 /* images */,
 				C65C63FF1DCC7A950015E2C8 /* LaunchScreen.storyboard */,
 				C65C64021DCC7A950015E2C8 /* Info.plist */,
 				C65C63F11DCC7A950015E2C8 /* Supporting Files */,

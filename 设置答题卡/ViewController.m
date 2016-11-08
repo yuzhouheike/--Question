@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 #import "QuestionCountView.h"
+
 @interface ViewController ()
+
+/** ceshi */
+@property (nonatomic, weak) QuestionCountView *questionCountViewview;
 
 @end
 
@@ -19,20 +23,21 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor grayColor];
     
-    UIView *questionCountViewview = [[QuestionCountView alloc] initWithFrame:CGRectMake(20, 40, CGRectGetWidth(self.view.bounds) - 40, 600)];
-    
-    
+    QuestionCountView *questionCountViewview = [[QuestionCountView alloc] init];
+    _questionCountViewview = questionCountViewview;
     [self.view addSubview:questionCountViewview];
-    
-    NSLog(@"%@", questionCountViewview);
-    
-    
+    NSLog(@"%@", questionCountViewview.answerViewArray);
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    NSLog(@"从控制器里面调用%@", _questionCountViewview.answerViewArray);
 }
 
 @end

@@ -10,4 +10,13 @@
 
 @interface AnswerView : UIView
 
+/** 答案数组 */
+@property (nonatomic, strong) NSMutableArray *answerArray;
+
+/** 题目个数 */
+@property (nonatomic, assign) NSInteger numberOfQuestion;
+
+/** 第几题 */
+@property (nonatomic, assign) NSInteger orderOfQuestion;
+
 @end

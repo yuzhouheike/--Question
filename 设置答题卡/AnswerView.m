@@ -20,20 +20,21 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        [self answerViewWithNumber:1 answerCount:4];
+        self.backgroundColor = [UIColor purpleColor];
     }
     return self;
 }
 
 
-- (UIView *) answerViewWithNumber:(NSInteger)number answerCount:(NSInteger)answerCount{
+- (void) answerViewWithNumber:(NSInteger)number answerCount:(NSInteger)answerCount{
     
+    _numberOfQuestion = answerCount;
     
-    UIView  *answerView = [[UIView alloc] initWithFrame:CGRectMake(30, 50 + (40 + kMargin) * number, CGRectGetWidth(self.bounds), 40)];
+    UIView  *answerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), 40)];
     answerView.tag = 1000 + number;
     
     tempLabel = [[UILabel alloc] init];
-    tempLabel.frame = CGRectMake(kMargin, 30, 80, 30);
+    tempLabel.frame = CGRectMake(0, 5, 80, 30);
     tempLabel.text = [NSString stringWithFormat:@"第%ld题", number] ;
     [answerView addSubview:tempLabel];
     
@@ -45,18 +46,18 @@
     
     for (NSInteger index = 0; index < answerCount; index ++) {
         
-//        _questionDictionary[@"questionCount"] = [NSNumber numberWithInteger:_questionCounter];
         
         x = index * (width + kMargin) + 100;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = [UIColor orangeColor];
         button.frame = CGRectMake(x, y, width, height);
         [button setTitle:answesArray[index] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"button_normal"] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"button_selected"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(answerButtonSelectedMethod:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = 1000 * index + number;
+        button.tag = 1000 * index;
         
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[@"selected"] = [NSString stringWithFormat:@"%ld", (long)button.selected];
@@ -94,18 +95,75 @@
         make.size.mas_equalTo(answerSumButton);
     }];
     
-    return answerView;
+    [self addSubview:answerView];
 }
 
-#pragma mark - 题目数量的增加或者减少
 
-- (void)questionSubButtonMethod:(UIButton *)button {
+#pragma mark - 题目的正确选项
+
+- (void) answerButtonSelectedMethod:(UIButton *)button {
     
-
+    button.selected = !button.selected;
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    if (button.selected) {
+        NSLog(@"第%ld行 第%ld列", button.tag % 1000, button.tag / 1000);
+        
+        [dictionary setValue:[NSNumber numberWithInteger:(button.tag / 1000)] forKey:[NSString stringWithFormat:@"第%ld题", (button.tag % 1000)]];
+        
+    }
+    else {
+        
+        NSLog(@"第%ld行 第%ld列", button.tag % 1000, button.tag / 1000);
+        
+        [dictionary setValue:[NSNumber numberWithInteger:(button.tag % 1000)] forKey:[NSString stringWithFormat:@"%ld", (button.tag / 1000)]];
+        
+        
+    }
+    
 }
 
+- (void)answerSubOrSumButtonMethod:(UIButton *)button {
+    
+    NSLog(@"%@", button.accessibilityLabel);
+    
+    NSLog(@"%ld", button.tag / 100);
+    
+    NSInteger row = button.tag / 100;
+    
+    NSInteger col = button.tag % 100;
+    
+    if ([button.accessibilityLabel isEqualToString:@"answerSum"]) {
+        
+        NSLog(@"");
+        if (col < 11) {
+            [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
+            col = col + 1;
+        }
+        
+    }
+    else if([button.accessibilityLabel isEqualToString:@"answerSub"]) {
+        
+        NSLog(@"");
+        if (col > 4) {
+            [[(UIView *)self viewWithTag:(row + 1000)] removeFromSuperview];
+            col = col - 1;
+        }
+    }
+    
+}
 
+#pragma mark - 设置第几题
 
+- (void)setOrderOfQuestion:(NSInteger)orderOfQuestion {
+    _orderOfQuestion = orderOfQuestion;
+    
+    [self answerViewWithNumber:_orderOfQuestion answerCount:4];
+}
+
+- (NSString *)description {
+    
+    return [NSString stringWithFormat:@"题目个数：%ld 题目序号：第%ld题 \n 答案数组%@", self.numberOfQuestion, self.orderOfQuestion, self.answerArray];
+}
 
 
 @end

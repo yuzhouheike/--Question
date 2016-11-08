@@ -7,6 +7,7 @@
 //
 
 #import "QuestionCountView.h"
+#import "AnswerView.h"
 #import "Masonry.h"
 #define kMargin 10
 
@@ -18,27 +19,22 @@
     UILabel *_numberOfQuestionLabel;
     UIButton *_questionSumButton;
     UIView *_blackView;
-    CGFloat _answerCount;
     UILabel *tempLabel;
-    NSMutableDictionary *buttonDict;
-    NSMutableArray *_resultDictArray;
+    /** 题目数量 */
+    NSInteger _questionCounter;
     
 }
 
 #pragma mark - lifecycle
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:CGRectMake(20, 40, [UIScreen mainScreen].bounds.size.width - 40, 120)];
     if (self) {
         
         [self setBackgroundColor:[UIColor whiteColor]];
         
-        _questionDictionary = [NSMutableDictionary dictionary];
-        _resultDictArray = [NSMutableArray array];
-        buttonDict = [NSMutableDictionary dictionary];
         
         _questionCounter = 1;
-        _answerCount = 4;
         _questionCountLabel = [[UILabel alloc] init];
         _questionCountLabel.text = @"题目数量:";
         
@@ -74,6 +70,10 @@
         [self addSubview:_numberOfQuestionLabel];
         [self addSubview:_blackView];
         
+        AnswerView *answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, (self.answerViewArray.count + 3) * 60, CGRectGetWidth(self.bounds), 50)];
+        answerView.orderOfQuestion = 1;
+        [self addSubview:answerView];
+        [self.answerViewArray addObject:answerView];
         
     }
     return self;
@@ -81,15 +81,12 @@
 
 - (void)layoutSubviews {
     
-
-    
     [_questionCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(self).offset(kMargin);
         make.left.equalTo(self).offset(kMargin);
         make.size.mas_equalTo(CGSizeMake(100, 30));
     }];
-    
     
     [_questionSubButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -124,79 +121,6 @@
 }
 
 
-#pragma mark - 答题卡视图绘制
-
-- (UIView *) answerViewWithNumber:(NSInteger)number answerCount:(NSInteger)answerCount{
-
-    
-        UIView  *answerView = [[UIView alloc] initWithFrame:CGRectMake(30, 50 + (40 + kMargin) * number, CGRectGetWidth(self.bounds), 40)];
-        answerView.tag = 1000 + number;
-    
-        tempLabel = [[UILabel alloc] init];
-        tempLabel.frame = CGRectMake(kMargin, 30, 80, 30);
-        tempLabel.text = [NSString stringWithFormat:@"第%ld题", number] ;
-        [answerView addSubview:tempLabel];
-        
-        NSArray *answesArray = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K"];
-        CGFloat x ;
-        CGFloat y = tempLabel.frame.origin.y;
-        CGFloat width = 40;
-        CGFloat height = 30;
-        
-        for (NSInteger index = 0; index < answerCount; index ++) {
-            
-            _questionDictionary[@"questionCount"] = [NSNumber numberWithInteger:_questionCounter];
-            
-            x = index * (width + kMargin) + 100;
-            
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(x, y, width, height);
-            [button setTitle:answesArray[index] forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [button setImage:[UIImage imageNamed:@"button_normal"] forState:UIControlStateNormal];
-            [button setImage:[UIImage imageNamed:@"button_selected"] forState:UIControlStateSelected];
-            [button addTarget:self action:@selector(answerButtonSelectedMethod:) forControlEvents:UIControlEventTouchUpInside];
-            button.tag = 1000 * index + number;
-            
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            dict[@"selected"] = [NSString stringWithFormat:@"%ld", (long)button.selected];
-            
-            [answerView addSubview:button];
-            
-        }
-        
-        UIButton *answerSubButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [answerSubButton setBackgroundImage:[[UIImage imageNamed:@"sub"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]forState:UIControlStateNormal];
-        answerSubButton.accessibilityLabel = @"answerSub";
-        [answerSubButton addTarget:self action:@selector(answerSubOrSumButtonMethod:) forControlEvents:UIControlEventTouchUpInside];
-        answerSubButton.tag = 100 * number + answerCount;
-    
-        UIButton *answerSumButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [answerSumButton setBackgroundImage:[[UIImage imageNamed:@"sum"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-        [answerSumButton addTarget:self action:@selector(answerSubOrSumButtonMethod:) forControlEvents:UIControlEventTouchUpInside];
-        answerSumButton.accessibilityLabel = @"answerSum";
-        answerSumButton.tag = 100 * number + answerCount;
-        
-        [answerView addSubview:answerSumButton];
-        [answerView addSubview:answerSubButton];
-        
-        [answerSumButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.right.equalTo(answerView.mas_right).offset(-kMargin * 4);
-            make.top.equalTo(tempLabel.mas_top);
-            make.size.mas_equalTo(CGSizeMake(40, 40));
-        }];
-        
-        [answerSubButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.right.equalTo(answerSumButton.mas_left).offset(-kMargin);
-            make.top.equalTo(answerSumButton.mas_top);
-            make.size.mas_equalTo(answerSumButton);
-        }];
-
-    return answerView;
-}
-
 
 #pragma mark - 题目数量的增加或者减少
 
@@ -207,22 +131,64 @@
     NSString *result = button.accessibilityLabel;
     
     if ([result isEqualToString:@"-"] && _questionCounter > 1) {
-        
+
+        CGRect frame = self.frame;
+        CGSize size = CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) -   40);
+        frame.size = size;
+        self.frame = frame;
         _questionCounter = _questionCounter - 1;
+        /**
+         删除最后一个anserView
+         */
+        AnswerView *answerView = self.answerViewArray[self.answerViewArray.count - 1];
+        [answerView removeFromSuperview];
+        [self.answerViewArray removeObjectAtIndex:(self.answerViewArray.count -1)];
+//        [self]
     }
     else if ([result isEqualToString:@"+"]) {
         
         _questionCounter = _questionCounter + 1;
+        CGRect frame = self.frame;
+        CGSize size = CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) +40);
+        frame.size = size;
+        self.frame = frame;
+        /**
+         增加一个anserView到最后
+         */
+        AnswerView *answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, (self.answerViewArray.count + 3) * 60, CGRectGetWidth(self.bounds), 50)];
+        answerView.orderOfQuestion = self.answerViewArray.count + 1;
+        [self addSubview:answerView];
+        [self.answerViewArray addObject:answerView];
+        
     }
     
     _numberOfQuestionLabel.text = [NSString stringWithFormat:@"%ld", (long)_questionCounter];
     
+    NSLog(@"%@", self.answerViewArray);
+    
+    
+   
 }
 
 - (void)setQuestionCounter:(NSInteger)questionCounter {
     
     _numberOfQuestionLabel.text = [NSString stringWithFormat:@"%ld", (long)_questionCounter];
 
+}
+
+- (NSMutableArray *)answerViewArray {
+    
+    if (!_answerViewArray) {
+        _answerViewArray = [NSMutableArray array];
+      
+    }
+    
+    return _answerViewArray;
+}
+
+- (NSString *)description {
+    
+    return [NSString stringWithFormat:@"%@", self.answerViewArray];
 }
 
 @end

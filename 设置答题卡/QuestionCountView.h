@@ -10,10 +10,9 @@
 
 @interface QuestionCountView : UIView
 
-/** 题目数量 */
-@property (nonatomic, assign) NSInteger questionCounter;
 
-/** 题目数量字典 */
-@property (nonatomic, strong) NSMutableDictionary *questionDictionary;
+/** answerView数组 */
+
+@property (nonatomic, copy) NSMutableArray *answerViewArray;
 
 @end
